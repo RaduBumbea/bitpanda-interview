@@ -1,12 +1,14 @@
-import VueCompositionAPI from '@vue/composition-api';
-import Vue from 'vue';
+import { createApp } from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import App from './App.vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret, faCheckCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import App from './App.vue';
+library.add(faUserSecret, faCheckCircle, faTrashAlt)
+const app = createApp(App)
 
-Vue.config.productionTip = false;
-
-Vue.use(VueCompositionAPI);
-
-new Vue({
-  render: (h) => h(App),
-}).$mount('#app');
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(VueAxios, axios)
+app.mount('#app')
